@@ -158,8 +158,10 @@ public class Part {
 				dirDialog.setFilterPath(InstrumentedApkName.getText());
 				String dir = dirDialog.open();
 
-				if (dir != null)
+				if (dir != null) {
+					dir=dir.substring(dir.lastIndexOf(File.separator)+1,dir.length()).trim();
 					InstrumentedApkName.setText(dir);
+				}
 			}
 
 		});
