@@ -4,12 +4,21 @@ package UI;
 import javax.inject.Inject;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.io.Writer;
 import java.lang.ProcessBuilder.Redirect;
 import java.lang.reflect.InvocationTargetException;
 import java.nio.charset.StandardCharsets;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 
 import javax.annotation.PostConstruct;
 
@@ -53,7 +62,7 @@ public class Part {
 
 		textInstrumentorDir = new Text(composite_1, SWT.BORDER);
 		textInstrumentorDir.setBounds(182, 27, 339, 26);
-		textInstrumentorDir.setText("C:\\Users\\Arjun\\Desktop\\NeonifyResources");
+		textInstrumentorDir.setText("C:\\Users\\Admin\\Desktop\\Neonify-Resources");
 
 		Button btnBrowseins = new Button(composite_1, SWT.NONE);
 		btnBrowseins.addSelectionListener(new SelectionAdapter() {
@@ -100,7 +109,7 @@ public class Part {
 
 		InstrumentApkDir = new Text(composite_1, SWT.BORDER);
 		InstrumentApkDir.setBounds(182, 125, 339, 26);
-		InstrumentApkDir.setText("C:\\Users\\Arjun\\Desktop\\NeonifyResources\\InstrumentedApks");
+		InstrumentApkDir.setText("C:\\Users\\Admin\\Desktop\\Neonify-Resources\\InstrumentedApk");
 
 		Button btnBrowseInstrumentApkDir = new Button(composite_1, SWT.NONE);
 		btnBrowseInstrumentApkDir.addSelectionListener(new SelectionAdapter() {
@@ -209,9 +218,27 @@ public class Part {
 		String commands[] = { "java", "-jar", instrumentorJarPath, ApkName, InstrumentedApkNamePath };
 		ProcessBuilder pb = new ProcessBuilder(commands);
 		pb.directory(new File(instrumentorDir));
-		File log = new File("log");
+		File log = new File("log.txt");
+		String pattern = "MM/dd/yyyy HH:mm:ss";
+		DateFormat df = new SimpleDateFormat(pattern);	
+		Date d1 = Calendar.getInstance().getTime();        
+		String startTime = df.format(d1);
+		Writer writer = null;
+		try {
+		    writer = new BufferedWriter(new OutputStreamWriter(
+		          new FileOutputStream("C:\\Users\\Admin\\Desktop\\log.txt"), "utf-8"));
+		    writer.write("##  Instrumentation started on  "+startTime+" "+System.lineSeparator());
+		} catch (IOException ex) {
+
+		} finally {
+		   try {writer.close();
+		   } catch (Exception ex) {}
+		}
+		
+		
 		pb.redirectErrorStream(true);
 		pb.redirectOutput(Redirect.appendTo(log));
+		
 		Process process = pb.start();
 		process.waitFor();
 		BufferedReader br = new BufferedReader(new InputStreamReader(process.getErrorStream(), StandardCharsets.UTF_8));
@@ -220,7 +247,29 @@ public class Part {
 
 			System.out.println(line);
 		}
+		 
+		Date d2=Calendar.getInstance().getTime(); 
+		String endTime = df.format(d2);
+		BufferedWriter writer1 = null;
+		try {
+		    writer1 = new BufferedWriter(new FileWriter(("C:\\Users\\Admin\\Desktop\\log.txt"), true));
+		    writer1.write("##  Instrumentation ended on  "+endTime+" "+System.lineSeparator());
+		    Long diffInMilliSeconds=d2.getTime()-d1.getTime();
+		    writer1.write("##  difference In MilliSeconds "+diffInMilliSeconds +System.lineSeparator());
+		    long difference_In_Minutes  = (diffInMilliSeconds  / (1000 * 60))  % 60; 
+		    writer1.write("##  difference In Minute "+difference_In_Minutes + System.lineSeparator());
 
+		} catch (IOException ex) {
+		   
+		} finally {
+		   try {writer1.close();
+		   } catch (Exception ex) {}
+		}
+		
+		
+		
+		
+		 
 	}
 
 	private void showProgressDialog(final String instrumentorDir, final String apkName, final String instrumentedApkDir,
@@ -278,7 +327,7 @@ public class Part {
 		String instrumentedApkPath = instrumentedApkDir + File.separator + instrumentedApkName;
 		String commands[] = { adbPath, "install", instrumentedApkPath };
 		ProcessBuilder pb = new ProcessBuilder(commands);
-		pb.directory(new File("C:\\Users\\Arjun\\Desktop\\NeonifyResources"));
+		pb.directory(new File("C:\\Users\\Admin\\Desktop\\Neonify-Resources"));
 		File log = new File("log");
 		pb.redirectErrorStream(true);
 		pb.redirectOutput(Redirect.appendTo(log));
