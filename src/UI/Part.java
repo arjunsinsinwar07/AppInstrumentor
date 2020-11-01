@@ -51,17 +51,17 @@ public class Part {
 	public void postConstruct(Composite parent) {
 
 		Composite composite = new Composite(parent, SWT.NONE);
-		composite.setBounds(0, 0, 700, 298);
+		composite.setBounds(0, 0, 695, 325);
 
 		Composite composite_1 = new Composite(composite, SWT.NONE);
-		composite_1.setBounds(10, 10, 700, 278);
+		composite_1.setBounds(0, 0, 705, 325);
 
 		Label IntrumentorJarDir = new Label(composite_1, SWT.NONE);
 		IntrumentorJarDir.setBounds(10, 30, 131, 20);
 		IntrumentorJarDir.setText("InstrumentorJarDir");
 
 		textInstrumentorDir = new Text(composite_1, SWT.BORDER);
-		textInstrumentorDir.setBounds(182, 27, 339, 26);
+		textInstrumentorDir.setBounds(181, 27, 339, 26);
 		textInstrumentorDir.setText("C:\\Users\\Admin\\Desktop\\Neonify-Resources");
 
 		Button btnBrowseins = new Button(composite_1, SWT.NONE);
@@ -205,6 +205,19 @@ public class Part {
 		});
 		PortForward2.setBounds(517, 227, 153, 30);
 		PortForward2.setText("PortForwardTo9898");
+		
+		Button InstallWithoutInstrumented = new Button(composite_1, SWT.NONE);
+		InstallWithoutInstrumented.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				Display display = Display.getDefault();
+				InstallWithoutInstrumentedApk shell=new InstallWithoutInstrumentedApk(display);
+				shell.open();
+				
+			}
+		});
+		InstallWithoutInstrumented.setBounds(243, 279, 212, 25);
+		InstallWithoutInstrumented.setText("InstallWithoutInstrumentedApk");
 
 	}
 
@@ -416,5 +429,4 @@ public class Part {
 		}
 
 	}
-
 }
