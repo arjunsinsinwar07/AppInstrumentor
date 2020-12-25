@@ -15,5 +15,18 @@ Require-Bundle: javax.inject;bundle-version="0.0.0",
  org.eclipse.e4.core.contexts;bundle-version="0.0.0"
 Automatic-Module-Name: AppInstrumentor
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-ClassPath: .,
+ Libs/OpKeyMobility-Android.jar,
+ Libs/opkey-pluginbase-v2.0-jar-with-dependencies.jar,
+ Libs/pCloudy-java-connector-11.0.5-jar-with-dependencies.jar,
+ Libs/org.json.simple-0.3-incubating-sources.jar,
+ Libs/ant-contrib-1.0.jar,
+ Libs/gson-2.3.1.jar,
+ Libs/hamcrest-core-1.1.jar,
+ Libs/javautil-3.1.2.jar,
+ Libs/opencv-2411.jar,
+ Libs/org.json-0.jar
 Import-Package: javax.annotation;version="1.0.0";resolution:=optional,
  javax.inject;version="1.0.0"
+Bundle-ActivationPolicy: lazy
+

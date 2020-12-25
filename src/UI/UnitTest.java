@@ -5,21 +5,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.widgets.Display;
-import org.eclipse.swt.widgets.Shell;
+import org.eclipse.swt.events.SelectionAdapter;
+import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Label;
+import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
+
 import com.plugin.mobility.Global;
 import com.plugin.mobility.MobileObject;
 import com.plugin.mobility.driver.By;
 import com.plugin.mobility.driver.MODE;
 import com.plugin.mobility.driver.MobilityAndroidDriver;
 import com.plugin.mobility.driver.interfaces.WebElement;
-import com.plugin.mobility.exceptionhandlers.FailResponseException;
-import org.eclipse.swt.widgets.Button;
-import org.eclipse.swt.events.SelectionAdapter;
-import org.eclipse.swt.events.SelectionEvent;
 
 public class UnitTest extends Shell {
 	private Text ByText;
@@ -85,7 +85,7 @@ private Text senkeys;
 					global_element.clear();
 					global_element.addAll(ele);
 					//ele.get(0).HighlightElement();
-				} catch (IllegalArgumentException | FailResponseException e1) {
+				} catch (Exception e1) {
 				
 					e1.printStackTrace();
 				}
@@ -118,7 +118,7 @@ private Text senkeys;
 					global_element.clear();
 					global_element.addAll(ele);
 					
-				} catch (IllegalArgumentException | FailResponseException e1) {
+				} catch (Exception e1) {
 					
 					e1.printStackTrace();
 				}
@@ -145,13 +145,13 @@ private Text senkeys;
 					e2.printStackTrace();
 				}
 				try {
-					 if (_androidDriver.IsHybridView()) { _androidDriver.switchContext(MODE.HYBRID); }
-					List<WebElement> ele = _androidDriver.findElements("*", By.innerText(ById.getText()));
+
+					List<WebElement> ele = _androidDriver.findElements("*", By.id(ById.getText()));
 					System.out.println("Total element found "+ele.size());
 					global_element.clear();
 					global_element.addAll(ele);
 					
-				} catch (IllegalArgumentException | FailResponseException e1) {
+				} catch (Exception e1) {
 					
 					e1.printStackTrace();
 				}
@@ -178,13 +178,13 @@ private Text senkeys;
 					e2.printStackTrace();
 				}
 				try {
-					 if (_androidDriver.IsHybridView()) { _androidDriver.switchContext(MODE.HYBRID); }
-					List<WebElement> ele = _androidDriver.findElements("*", By.innerText(ByXpath.getText()));
+					
+					List<WebElement> ele = _androidDriver.findElements("*", By.xpath(ByXpath.getText()));
 					System.out.println("Total element found "+ele.size());
 					global_element.clear();
 					global_element.addAll(ele);
 					
-				} catch (IllegalArgumentException | FailResponseException e1) {
+				} catch (Exception e1) {
 										e1.printStackTrace();
 				}
 			}
@@ -198,7 +198,7 @@ private Text senkeys;
 			public void widgetSelected(SelectionEvent e) {
 				try {
 					global_element.get(0).HighlightElement();
-				} catch (FailResponseException e1) {
+				} catch (Exception e1) {
 					
 					e1.printStackTrace();
 				}
@@ -213,7 +213,7 @@ private Text senkeys;
 			public void widgetSelected(SelectionEvent e) {
 				try {
 					global_element.get(0).click();
-				} catch (FailResponseException e1) {
+				} catch (Exception e1) {
 					
 					e1.printStackTrace();
 				}
@@ -228,7 +228,7 @@ private Text senkeys;
 			public void widgetSelected(SelectionEvent e) {
 				try {
 					global_element.get(0).sendKeys(Sendkeys.getText());
-				} catch (FailResponseException e1) {
+				} catch (Exception e1) {
 					
 					e1.printStackTrace();
 				}

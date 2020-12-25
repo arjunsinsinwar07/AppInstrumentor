@@ -4,22 +4,12 @@ package UI;
 import javax.inject.Inject;
 
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileOutputStream;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
-import java.io.Writer;
 import java.lang.ProcessBuilder.Redirect;
 import java.lang.reflect.InvocationTargetException;
 import java.nio.charset.StandardCharsets;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-
 import javax.annotation.PostConstruct;
 
 import org.eclipse.core.runtime.IProgressMonitor;
@@ -41,6 +31,7 @@ public class Part {
 	private Text ApkName;
 	private Text InstrumentApkDir;
 	private Text InstrumentedApkName;
+	
 
 	@Inject
 	public Part() {
@@ -198,7 +189,7 @@ public class Part {
 				try {
 					PortForward9898("tcp:9898", "9899");
 				} catch (IOException | InterruptedException e1) {
-					// TODO Auto-generated catch block
+					
 					e1.printStackTrace();
 				}
 			}
@@ -218,6 +209,18 @@ public class Part {
 		});
 		InstallWithoutInstrumented.setBounds(243, 279, 212, 25);
 		InstallWithoutInstrumented.setText("InstallWithoutInstrumentedApk");
+		
+		Button btnUnittest = new Button(composite_1, SWT.NONE);
+		btnUnittest.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				Display display = Display.getDefault();
+				UnitTest shell=new UnitTest(display);
+				shell.open();
+			}
+		});
+		btnUnittest.setBounds(66, 279, 75, 25);
+		btnUnittest.setText("UnitTest");
 
 	}
 
@@ -255,9 +258,16 @@ public class Part {
 			public void run(IProgressMonitor monitor) throws InvocationTargetException, InterruptedException {
 				monitor.beginTask("Instrumenting Application! - Please Wait ...", -1);
 
-				try {
-
+				try {	
+					if(monitor.isCanceled()) {
+						System.out.println("montor is cancelled");
+						monitor.done();
+					       return;
+					}
 					startProcess(instrumentorDir, apkName, instrumentedApkDir, instrumentrdApkName);
+			
+
+					
 				} catch (IOException | InterruptedException e) {
 
 					e.printStackTrace();
@@ -272,7 +282,7 @@ public class Part {
 
 	private void showProgressDialogForInstall(final String instrumentedApkDir, final String instrumentrdApkName) {
 		MessageDialogs msd = new MessageDialogs();
-		msd.openProgressDialog(Display.getDefault().getActiveShell(), "Instrumenting Application! - Please Wait ...",
+		msd.openProgressDialog(Display.getDefault().getActiveShell(), "Installing Application! - Please Wait ...",
 				true, new IRunnableWithProgress() {
 			@Override
 			public void run(IProgressMonitor monitor) throws InvocationTargetException, InterruptedException {
@@ -280,7 +290,11 @@ public class Part {
 						"Installing Application" + " " + instrumentrdApkName + " " + " - Please Wait ...", -1);
 
 				try {
+				
 					installApp(instrumentedApkDir, instrumentrdApkName);
+						
+				
+					
 
 				} catch (IOException | InterruptedException e) {
 
