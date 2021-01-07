@@ -7,6 +7,9 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.PrintStream;
+import java.io.PrintWriter;
+import java.io.Writer;
 import java.lang.ProcessBuilder.Redirect;
 import java.lang.reflect.InvocationTargetException;
 import java.nio.charset.StandardCharsets;
@@ -242,12 +245,10 @@ public class Part {
 		BufferedReader br = new BufferedReader(new InputStreamReader(process.getErrorStream(), StandardCharsets.UTF_8));
 		String line;
 		while ((line = br.readLine()) != null) {
-
 			System.out.println(line);
 		}
-		 	
 		 
-	}
+			}
 
 	private void showProgressDialog(final String instrumentorDir, final String apkName, final String instrumentedApkDir,
 			final String instrumentrdApkName) {

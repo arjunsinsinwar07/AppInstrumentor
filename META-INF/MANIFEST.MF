@@ -5,21 +5,13 @@ Bundle-SymbolicName: AppInstrumentor;singleton:=true
 Bundle-Version: 1.0.0.qualifier
 Require-Bundle: javax.inject;bundle-version="0.0.0",
  org.eclipse.core.runtime;bundle-version="0.0.0",
- org.eclipse.swt;bundle-version="0.0.0",
- org.eclipse.e4.ui.model.workbench;bundle-version="0.0.0",
- org.eclipse.jface;bundle-version="0.0.0",
- org.eclipse.e4.ui.services;bundle-version="0.0.0",
- org.eclipse.e4.ui.workbench;bundle-version="0.0.0",
- org.eclipse.e4.core.di;bundle-version="0.0.0",
- org.eclipse.e4.ui.di;bundle-version="0.0.0",
- org.eclipse.e4.core.contexts;bundle-version="0.0.0"
+ org.eclipse.jface;bundle-version="0.0.0"
 Automatic-Module-Name: AppInstrumentor
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Bundle-ClassPath: .,
  Libs/OpKeyMobility-Android.jar,
  Libs/opkey-pluginbase-v2.0-jar-with-dependencies.jar,
  Libs/pCloudy-java-connector-11.0.5-jar-with-dependencies.jar,
- Libs/org.json.simple-0.3-incubating-sources.jar,
  Libs/ant-contrib-1.0.jar,
  Libs/gson-2.3.1.jar,
  Libs/hamcrest-core-1.1.jar,
@@ -28,5 +20,4 @@ Bundle-ClassPath: .,
  Libs/org.json-0.jar
 Import-Package: javax.annotation;version="1.0.0";resolution:=optional,
  javax.inject;version="1.0.0"
-Bundle-ActivationPolicy: lazy
 
