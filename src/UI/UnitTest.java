@@ -84,6 +84,7 @@ private Text senkeys;
 					System.out.println("Total element found "+ele.size());
 					global_element.clear();
 					global_element.addAll(ele);
+					global_element.get(0).HighlightElement();
 					//ele.get(0).HighlightElement();
 				} catch (Exception e1) {
 				
@@ -117,6 +118,7 @@ private Text senkeys;
 					System.out.println("Total element found "+ele.size());
 					global_element.clear();
 					global_element.addAll(ele);
+					global_element.get(0).HighlightElement();
 					
 				} catch (Exception e1) {
 					
@@ -150,6 +152,7 @@ private Text senkeys;
 					System.out.println("Total element found "+ele.size());
 					global_element.clear();
 					global_element.addAll(ele);
+					global_element.get(0).HighlightElement();
 					
 				} catch (Exception e1) {
 					
@@ -183,6 +186,7 @@ private Text senkeys;
 					System.out.println("Total element found "+ele.size());
 					global_element.clear();
 					global_element.addAll(ele);
+					global_element.get(0).HighlightElement();
 					
 				} catch (Exception e1) {
 										e1.printStackTrace();
