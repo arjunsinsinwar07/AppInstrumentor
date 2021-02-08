@@ -1,5 +1,9 @@
 package UI;
 
+import java.awt.Button;
+import java.awt.Composite;
+import java.awt.FileDialog;
+import java.awt.Label;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
@@ -7,18 +11,15 @@ import java.io.InputStreamReader;
 import java.lang.reflect.InvocationTargetException;
 import java.nio.charset.StandardCharsets;
 
+import javax.xml.soap.Text;
+
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.jface.operation.IRunnableWithProgress;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
-import org.eclipse.swt.widgets.Button;
-import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
-import org.eclipse.swt.widgets.FileDialog;
-import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
-import org.eclipse.swt.widgets.Text;
 
 public class InstallWithoutInstrumentedApk extends Shell {
 	private Text text;

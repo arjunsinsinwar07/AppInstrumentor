@@ -7,7 +7,7 @@ Require-Bundle: javax.inject;bundle-version="0.0.0",
  org.eclipse.core.runtime;bundle-version="0.0.0",
  org.eclipse.jface;bundle-version="0.0.0"
 Automatic-Module-Name: AppInstrumentor
-Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-RequiredExecutionEnvironment: JavaSE-11
 Bundle-ClassPath: .,
  Libs/OpKeyMobility-Android.jar,
  Libs/opkey-pluginbase-v2.0-jar-with-dependencies.jar,

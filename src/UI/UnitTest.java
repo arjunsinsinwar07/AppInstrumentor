@@ -84,7 +84,13 @@ private Text senkeys;
 					System.out.println("Total element found "+ele.size());
 					global_element.clear();
 					global_element.addAll(ele);
-					global_element.get(0).HighlightElement();
+					if(global_element.size()>=1) {
+						int size=global_element.size();
+					global_element.get(size-1).HighlightElement();
+					}else {
+						global_element.get(0).HighlightElement();
+					}
+						
 					//ele.get(0).HighlightElement();
 				} catch (Exception e1) {
 				
